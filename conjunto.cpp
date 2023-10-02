@@ -130,22 +130,15 @@ void Conjunto::mergeSort(){
 }
 
 void Conjunto::mergeSort(int *array, int inicio, int fim){
-    if (!array){
-        throw QString("Erro: vetor vazio ou tamanho invalido");
+    if (inicio < fim){
+        int meio = (inicio + fim) / 2;
+        mergeSort(array, inicio, meio);
+        mergeSort(array, meio + 1, fim);
+        merge(array, inicio, meio, fim);
     }
-    if (inicio > fim){
-        return;
-    }
-    int meio = (inicio + fim) / 2;
-    mergeSort(array, inicio, meio);
-    mergeSort(array, meio + 1, fim);
-    merge(array, inicio, meio, fim);
 }
 
 void Conjunto::merge(int *array, int inicio, int meio, int fim){
-    if (!array){
-        throw QString("Erro: vetor vazio ou tamanho invalido");
-    }
     int n1 = meio - inicio + 1;
     int n2 = fim - meio;
     int *L = new int[n1];
